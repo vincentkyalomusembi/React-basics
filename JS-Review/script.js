@@ -171,3 +171,10 @@ const updatedBook = {
   // overwriting an existing property
   pages: 1210,
 };
+//Template literals
+const summary = `${title}, a ${pages}-page long book, was written by ${author} and published in ${publicationDate}`;
+//Ternary instead of ifelse statement
+const pagesRange = pages > 1000 ? "over a thousand" : "less than a thousand";
+pageRange;
+summary;
+console.log(`The book has ${pagesRange} pages`);
