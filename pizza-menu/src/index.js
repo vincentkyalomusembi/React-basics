@@ -78,11 +78,16 @@ function Menu() {
     <main className="menu">
       <h2>Our menu</h2>
       {numPizzas > 0 ? (
+        <>
+        <p>
+          Authentic Italian cuisine. 6 creative dishes to choose from. All from </p>
+          
         <ul className="pizzas">
           {pizzas.map((pizza) => (
             <Pizza pizzaObj={pizza} key={pizza.name} />
           ))}
         </ul>
+        </>
       ) : <p>we're still working on our menu. please come later</p>}
 
       {/* <Pizza
@@ -105,15 +110,15 @@ function Menu() {
 function Pizza({pizzaObj}) {
   console.log(pizzaObj);
 
-  if (pizzaObj.soldOut) return null;
+  // if (pizzaObj.soldOut) return null;
 
   return (
-    <li className="pizza">
+    <li className={`pizza ${pizzaObj.soldOut ? "sold-out" : ""}`}>
       <img src={pizzaObj.photoName} alt={pizzaObj.name} />
       <div>
         <h3>{pizzaObj.name}</h3>
         <p>{pizzaObj.ingredients}</p>
-        <h3>{pizzaObj.price}</h3>
+        <span>{pizzaObj.soldOut ? "SOLD OUT" : pizzaObj.price}</span>
       </div>
     </li>
   );
@@ -121,7 +126,7 @@ function Pizza({pizzaObj}) {
 
 function Footer() {
   const hour = new Date().getHours();
-  const openHour = 12;
+  const openHour = 8;
   const closeHour = 22;
   const isOpen = hour >= openHour && hour <= closeHour;
   console.log(isOpen);
@@ -148,7 +153,7 @@ function Footer() {
 function Order({closeHour, openHour}) {
   return (
   <div className="order">
-     <p>We're open until {closeHour}:00. Come visit us or order online</p>
+     <p>We're open until{openHour}:00 and {closeHour}:00. Come visit us or order online</p>
      <button className="btn">order</button>
   </div>
   );
